@@ -1,6 +1,6 @@
 <?php
 	
-	$mysqli = new mysqli('localhost', 'root', '', 'prueba');
+	$mysqli = new mysqli('localhost', 'root', '', 'convocatorias');
 	
 	if($mysqli->connect_error){
 		
