@@ -6,7 +6,7 @@ $sql="SELECT * FROM convocatoria";
 $resultado=$conn->query($sql);
 
 $id=(isset($_GET['id']))?$_GET['id']:'';
-$idEvaluacion=(isset($_GET['idEvaluacion']))?$_GET['idEvaluacion']:'';
+
 
 $numConvocatoria='';
 $cargo='';
@@ -21,6 +21,17 @@ if($id!=''){
   $cargo=$fila[2];
   $estado=$fila[3];
   $bases=$fila[4];
+}
+
+// funciones para evaluacion curricular
+$idEvaluacion=(isset($_GET['idEvaluacion']))?$_GET['idEvaluacion']:'';
+$idEvaluacionEditar=(isset($_GET['idEvaluacionEditar']))?$_GET['idEvaluacionEditar']:'';
+$nom_evaluacion='';
+if($idEvaluacionEditar!=''){
+  $sql="SELECT * FROM evaluacion_curricular WHERE id=$idEvaluacionEditar";
+  $result=$conn->query($sql);
+  $fila=$result->fetch_row();
+  $nom_evaluacion=$fila[1];
 }
 ?>
 
@@ -43,12 +54,22 @@ if($id!=''){
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">SISConvocatorias</h1>
     <!-- Button trigger modal -->
+    <a href="" id="pressEvaluacionEditar"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricularEditar">hola</a> 
     <a href="" id="pressEvaluacion"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricular"></a> 
     <a href="" id="press"  data-bs-toggle="modal" data-bs-target="#Modal2"></a> 
     <a href="./" class="btn btn-danger">Actualizar Datos</a> 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">
       Agregar Datos
     </button>
+  </div>
+
+  <div class="pdf">
+    <div>
+      <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+    </div>
+    <div class="contenedorPunto">
+      <a href=""><i class="bi bi-circle-fill punto1"></i></a> <a href=""><i class="bi bi-circle-fill punto2"></i></a>
+    </div>
   </div>
 
   <h2>Panel de Control</h2>
@@ -74,7 +95,7 @@ if($id!=''){
             <td><?php echo $fila[2]?></td>
             <td><?php echo $fila[3]?></td>
             <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
-            <td><div class="box"><div>
+            <td><div class="box"><div class="pdfRow">
               <?php
 
 
@@ -84,7 +105,15 @@ if($id!=''){
               $queryEvaluacion=$conn->query($sql1);
 
               while($filaEvaluacion=$queryEvaluacion->fetch_row()){
-                echo($filaEvaluacion[1]!='')?'<a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';
+                echo($filaEvaluacion[1]!='')?'<div class="pdf">
+    <div>
+      <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+    </div>
+    <div class="contenedorPunto">
+      <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-circle-fill punto1"></i></a> 
+      <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-circle-fill punto2"></i></a>
+    </div>
+  </div>':'';
               }
 
 
@@ -189,7 +218,7 @@ if($id!=''){
       </div>
       <div class="modal-body">
         <form action="evaluacion_evalua.php" method="GET" id="enviarEvaluacion" >
-          <input type="text" name="id" value="<?php echo $idEvaluacion; ?>" >
+          <input type="text" name="idEvaluacion" value="<?php echo $idEvaluacion; ?>" hidden>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Evaluacion Curricular</label>
             <textarea class="form-control" name="evaluacion"  placeholder="Ingrese el link"></textarea>
@@ -204,9 +233,71 @@ if($id!=''){
     </div>
   </div>
 </div>
+<!-- Evaluacion curricular editar -->
+<div class="modal fade" id="ModalEvalucionCurricularEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Evaluacion Curricular</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="evaluacion_evalua.php" method="GET" id="editarEvaluacion" >
+          <input type="text" name="id" value="<?php echo $idEvaluacionEditar; ?>" hidden>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Evaluacion Curricular</label>
+            <textarea class="form-control" name="evaluacion"  placeholder="Ingrese el link"><?php echo $nom_evaluacion;?></textarea>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" form="editarEvaluacion">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style type="text/css">
+/*  *{
+   outline: 1px red solid;
+}*/
+  .pdfRow{
+    display: flex;
+  flex-direction:  row;
+  
+  align-items: center;
+  }
+  .pdf{
+    display: flex;
+  flex-direction:  column;
+  
+  align-items: center;
 
+  }
+  .pdf .contenedorPunto{
+      display: flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  align-items: center;
+    height: 10px;
+    width: 20px;
+   
+ 
+
+  }
+   .pdf .contenedorPunto .punto1{
+  
+  font-size: 7px;
+  color: #ffc107;
+
+  }
+  .pdf .contenedorPunto .punto2{
+  font-size: 7px;
+  color: black;
+
+  }
 
  .icono{
   font-size: 25px;
@@ -240,6 +331,11 @@ if($id!=''){
 if($idEvaluacion!=''){
   echo '<script type="text/javascript">
   document.getElementById("pressEvaluacion").click();
+  </script>';
+}
+if($idEvaluacionEditar!=''){
+  echo '<script type="text/javascript">
+  document.getElementById("pressEvaluacionEditar").click();
   </script>';
 }
 ?>
