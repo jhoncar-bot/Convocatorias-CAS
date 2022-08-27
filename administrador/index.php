@@ -33,8 +33,18 @@ if($idEvaluacionEditar!=''){
   $fila=$result->fetch_row();
   $nom_evaluacion=$fila[1];
 }
-?>
+// funciones para evaluacion curricular
+$idConocimientos=(isset($_GET['idConocimientos']))?$_GET['idConocimientos']:'';
+$idConocimientosEditar=(isset($_GET['idConocimientosEditar']))?$_GET['idConocimientosEditar']:'';
 
+$nom_conocimientos='';
+if($idConocimientosEditar!=''){
+  $sql="SELECT * FROM conocimientos_aptitudes WHERE id=$idConocimientosEditar";
+  $result=$conn->query($sql);
+  $fila=$result->fetch_row();
+  $nom_conocimientos=$fila[1];
+}
+?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
   <?php 
   print($id);
@@ -54,7 +64,9 @@ if($idEvaluacionEditar!=''){
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">SISConvocatorias</h1>
     <!-- Button trigger modal -->
-    <a href="" id="pressEvaluacionEditar"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricularEditar">hola</a> 
+    <a href="" id="pressConocimientosEditar"  data-bs-toggle="modal" data-bs-target="#ModalConocimientosEditar"></a> 
+    <a href="" id="pressConocimientos"  data-bs-toggle="modal" data-bs-target="#ModalConocimientos">hola</a> 
+    <a href="" id="pressEvaluacionEditar"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricularEditar"></a> 
     <a href="" id="pressEvaluacion"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricular"></a> 
     <a href="" id="press"  data-bs-toggle="modal" data-bs-target="#Modal2"></a> 
     <a href="./" class="btn btn-danger">Actualizar Datos</a> 
@@ -83,6 +95,7 @@ if($idEvaluacionEditar!=''){
           <th >Estado</th>
           <th >Bases</th>
           <th>Evaluacion Curricular</th>
+          <th>Conocimientos y aptitudes</th>
           <th>Editar</th>
           <th >Elimnar</th>
         </tr>
@@ -97,30 +110,46 @@ if($idEvaluacionEditar!=''){
             <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
             <td><div class="box"><div class="pdfRow">
               <?php
-
-
-              $sql1="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-
-
-              $queryEvaluacion=$conn->query($sql1);
-
-              while($filaEvaluacion=$queryEvaluacion->fetch_row()){
-                echo($filaEvaluacion[1]!='')?'<div class="pdf">
-    <div>
-      <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-    </div>
-    <div class="contenedorPunto">
-      <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-circle-fill punto1"></i></a> 
-      <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-circle-fill punto2"></i></a>
-    </div>
-  </div>':'';
-              }
-
-
-              ?>                  
+                $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
+                $query=$conn->query($sql);
+                while($filaEvaluacion=$query->fetch_row()){
+                    echo($filaEvaluacion[1]!='')?'
+                          <div class="pdf">
+                            <div>
+                              <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                            </div>
+                            <div class="contenedorPunto">
+                              <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+                              <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+                            </div>
+                          </div>':'';
+                  }
+                ?>                  
             </div>
             <div>
               <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
+            </div>
+          </div></td>
+          <td><div class="box"><div class="pdfRow">
+              <?php
+                $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
+                $query=$conn->query($sql1);
+                while($filaConocimientos=$query->fetch_row()){
+                    echo($filaConocimientos[1]!='')?'
+                          <div class="pdf">
+                            <div>
+                              <a href="'.$filaConocimientos[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                            </div>
+                            <div class="contenedorPunto">
+                              <a href="index.php?idConocimientosEditar='.$filaConocimientos[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+                              <a href="conocimientos_evalua.php?op=eliminar&id='.$filaConocimientos[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+                            </div>
+                          </div>':'';
+                  }
+                ?>                  
+            </div>
+            <div>
+              <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
             </div>
           </div></td>
           <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
@@ -258,6 +287,59 @@ if($idEvaluacionEditar!=''){
     </div>
   </div>
 </div>
+<!-- Conocimientos y aptitudes  agregar -->
+<div class="modal fade" id="ModalConocimientos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Conocimientos y aptititudes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="conocimientos_evalua.php" method="GET" id="enviarConocimientos" >
+          <input type="text" name="idConocimientos" value="<?php echo $idConocimientos; ?>" hidden>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Conocimientos y aptititudes</label>
+            <textarea class="form-control" name="conocimientos"  placeholder="Ingrese el link"></textarea>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" form="enviarConocimientos">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Conocimientos y aptitudes  editar -->
+<div class="modal fade" id="ModalConocimientosEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Conocimientos y aptititudes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="conocimientos_evalua.php" method="GET" id="enviarConocimientosEditar" >
+          <input type="text" name="id" value="<?php echo $idConocimientosEditar; ?>" >
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Conocimientos y aptititudes</label>
+            <textarea class="form-control" name="conocimientos"  placeholder="Ingrese el link"><?php echo $nom_conocimientos;?></textarea>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
+        <button type="submit" class="btn btn-primary" form="enviarConocimientosEditar">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <style type="text/css">
 /*  *{
@@ -336,6 +418,17 @@ if($idEvaluacion!=''){
 if($idEvaluacionEditar!=''){
   echo '<script type="text/javascript">
   document.getElementById("pressEvaluacionEditar").click();
+  </script>';
+}
+if($idConocimientos!=''){
+  echo '<script type="text/javascript">
+  document.getElementById("pressConocimientos").click();
+  </script>';
+}
+if($idConocimientosEditar!=''){
+  echo '<script type="text/javascript">
+  document.getElementById("pressConocimientosEditar").click();
+
   </script>';
 }
 ?>

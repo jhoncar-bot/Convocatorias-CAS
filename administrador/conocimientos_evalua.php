@@ -2,23 +2,22 @@
  include("conexion.php");
  $id=isset($_GET['id'])?$_GET['id']:'';
  $op=isset($_GET['op'])?$_GET['op']:'editar';
- $idEvaluacion=isset($_GET['idEvaluacion'])?$_GET['idEvaluacion']:'';
+ $idConocimientos=isset($_GET['idConocimientos'])?$_GET['idConocimientos']:'';
 
 if($op=="eliminar"){
-    $sql="DELETE FROM evaluacion_curricular WHERE id=$id";
+    $sql="DELETE FROM conocimientos_aptitudes WHERE id=$id";
     $resultado= $conn->query($sql);
     if (!$resultado = $conn->query($sql)) die("no se borro el dato porque: ".$conn->error);
 }else if($op=="editar" && $id!=''){
 	echo "editar";
-    $evaluacion=$_GET['evaluacion'];
-    $sql="UPDATE evaluacion_curricular SET nom_evaluacion='$evaluacion'WHERE id=$id";
+    $conocimientos=$_GET['conocimientos'];
+    $sql="UPDATE conocimientos_aptitudes SET nom_conocimientos='$conocimientos'WHERE id=$id";
     $resultado=$conn->query($sql);
     if (!$resultado = $conn->query($sql)) die("no se editar el dato porque: ".$conn->error);
 }else{
-	$evaluacion=$_GET['evaluacion'];
-	$sql="INSERT INTO evaluacion_curricular(nom_evaluacion,id_convocatoria) VALUES ('$evaluacion',$idEvaluacion)";
+	$conocimientos=$_GET['conocimientos'];
+	$sql="INSERT INTO conocimientos_aptitudes(nom_conocimientos,id_conocimientos) VALUES ('$conocimientos',$idConocimientos)";
 	if (!$resultado = $conn->query($sql)) die("no se agregar el dato porque: ".$conn->error);
 }
- header("location: index.php");
-
+/* header("location: index.php");*/
 ?>
