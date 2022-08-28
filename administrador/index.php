@@ -69,26 +69,13 @@ if($idResultadoEditar!=''){
 }
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-  <?php 
-  print($id);
-  $sql="DELETE FROM convocatorias WHERE id=3";
-  $eliminar=$conn->query($sql);
-  if ($eliminar) {
-    echo "Se borro el dato correctamente";
-  }else{
-    echo "no se borro el dato";
-  }
-  print($sql);
-  print("<br>");
-  print($resultado->num_rows);
-  print("<br>");
-  ?>
+
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">SISConvocatorias</h1>
-    <!-- Button trigger modal -->
+    <!-- Modales -->
     <a href="" id="pressResultadoEditar"  data-bs-toggle="modal" data-bs-target="#ModalResultadoEditar"></a> 
-    <a href="" id="pressResultado"  data-bs-toggle="modal" data-bs-target="#ModalResultado">hola</a> 
+    <a href="" id="pressResultado"  data-bs-toggle="modal" data-bs-target="#ModalResultado"></a> 
 
     <a href="" id="pressEntrevistaEditar"  data-bs-toggle="modal" data-bs-target="#ModalEntrevistaEditar"></a> 
     <a href="" id="pressEntrevista"  data-bs-toggle="modal" data-bs-target="#ModalEntrevista"></a> 
@@ -106,14 +93,7 @@ if($idResultadoEditar!=''){
     </button>
   </div>
 
-  <div class="pdf">
-    <div>
-      <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-    </div>
-    <div class="contenedorPunto">
-      <a href=""><i class="bi bi-circle-fill punto1"></i></a> <a href=""><i class="bi bi-circle-fill punto2"></i></a>
-    </div>
-  </div>
+
 
   <h2>Panel de Control</h2>
   <div class="table-responsive">
