@@ -95,11 +95,12 @@ if($idResultadoEditar!=''){
 
 
 
-  <h2>Panel de Control</h2>
+  <h2>Panel de Control:</h2>
+  <br>
   <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead >
-        <tr>
+    <table class="table table-bordered  table-sm ">
+      <thead class="align-middle">
+        <tr class="table-dark cabecera ">
           <th >#</th>
           <th >N° de Convocatoria</th>
           <th >Cargo</th>
@@ -113,7 +114,7 @@ if($idResultadoEditar!=''){
           <th >Elimnar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="align-middle">
         <?php while($fila=$resultado->fetch_row()) {?>
           <tr >
             <td><?php echo $fila[0]?></td>
@@ -140,7 +141,7 @@ if($idResultadoEditar!=''){
                 ?>                  
             </div>
             <div>
-              <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
+              <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2"></i></a>
             </div>
           </div></td>
           <td><div class="box"><div class="pdfRow">
@@ -162,7 +163,7 @@ if($idResultadoEditar!=''){
                 ?>                  
             </div>
             <div>
-              <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
+              <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
             </div>
           </div></td>
           <td><div class="box"><div class="pdfRow">
@@ -545,6 +546,8 @@ if($idResultadoEditar!=''){
 .icono2{
   font-size: 25px;
 
+
+
 }
 .icono1{
   font-size: 25px;
@@ -555,6 +558,14 @@ if($idResultadoEditar!=''){
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.cabecera{
+  text-align: center;
+
+}
+tbody{
+
+  
 }
 /*  thead{
     background-color: red;
