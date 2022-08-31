@@ -87,10 +87,13 @@ if($idResultadoEditar!=''){
     <a href="" id="pressEvaluacion"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricular"></a> 
 
     <a href="" id="press"  data-bs-toggle="modal" data-bs-target="#Modal2"></a> 
-    <a href="./" class="btn btn-danger">Actualizar Datos</a> 
+    <div>
+      <a href="./" class="btn btn-danger">Actualizar Datos</a> 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">
       Agregar Datos
-    </button>
+    </button>      
+    </div>
+    
   </div>
 
 
@@ -120,7 +123,14 @@ if($idResultadoEditar!=''){
             <td><?php echo $fila[0]?></td>
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
-            <td><?php echo $fila[3]?></td>
+            <td>
+               <?php
+                $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
+                $queryResultado=$conn->query($sql3);
+                $numFilas=$queryResultado->num_rows;
+                echo($numFilas>0?"FINALIZADO":"EN PROCESO")
+                ?>   
+            </td>
             <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
             <td><div class="box"><div class="pdfRow">
               <?php
@@ -141,7 +151,7 @@ if($idResultadoEditar!=''){
                 ?>                  
             </div>
             <div>
-              <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2"></i></a>
+              <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
             </div>
           </div></td>
           <td><div class="box"><div class="pdfRow">
@@ -185,14 +195,12 @@ if($idResultadoEditar!=''){
                 ?>                  
             </div>
             <div>
-              <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
+              <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
             </div>
           </div></td>
           <td><div class="box"><div class="pdfRow">
               <?php
-                $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
-                $query=$conn->query($sql3);
-                while($filaResultado=$query->fetch_row()){
+                while($filaResultado=$queryResultado->fetch_row()){
                     echo($filaResultado[1]!='')?'
                           <div class="pdf">
                             <div>
@@ -207,7 +215,7 @@ if($idResultadoEditar!=''){
                 ?>                  
             </div>
             <div>
-              <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-file-earmark-plus icono2 box"></i></a>
+              <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
             </div>
           </div></td>
           <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
@@ -529,12 +537,12 @@ if($idResultadoEditar!=''){
   }
    .pdf .contenedorPunto .punto1{
   
-  font-size: 7px;
+  font-size: 8px;
   color: #ffc107;
 
   }
   .pdf .contenedorPunto .punto2{
-  font-size: 7px;
+  font-size: 8px;
   color: black;
 
   }
@@ -544,7 +552,7 @@ if($idResultadoEditar!=''){
   color: red;
 }
 .icono2{
-  font-size: 25px;
+  font-size: 20px;
 
 
 
