@@ -1,0 +1,223 @@
+/*estilos para la barra de navegacion*/
+.logo1{
+	width: 70px;
+	height: 70px;
+	margin: 8px;
+	margin-right: 20px;
+}
+.title{
+		margin-left: 15px;
+
+}
+.linea{
+	
+    border-right: thick solid gray;
+    margin: 5px;
+    height: 10px;
+    
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+}
+.subtitle{
+	font-size: 13px;
+}
+.tituloGeneral{
+	display: flex;
+  flex-direction:  row;
+  align-items: center;
+  padding-top: 0px;
+    padding-bottom: 0px;
+    width: 80px;
+	color: white;
+	font-size: 25px;
+
+}
+.barraLateral{
+		font-size: 15px;
+		color: #6c757d;
+		}
+@media (max-width: 768px) {
+  .logo1{
+	
+	margin-right: 80px;
+}
+}
+/*Estilos para el panel de control
+*/
+   outline: 1px red solid;
+}*/
+  .pdfRow{
+    display: flex;
+  flex-direction:  row;
+  
+  align-items: center;
+  }
+  .pdf{
+    display: flex;
+  flex-direction:  column;
+  
+  align-items: center;
+
+  }
+  .pdf .contenedorPunto{
+      display: flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  align-items: center;
+    height: 10px;
+    width: 20px;
+   
+ 
+
+  }
+   .pdf .contenedorPunto .punto1{
+  
+  font-size: 8px;
+  color: #ffc107;
+
+  }
+  .pdf .contenedorPunto .punto2{
+  font-size: 8px;
+  color: black;
+
+  }
+
+ .icono{
+  font-size: 25px;
+  color: red;
+}
+.icono2{
+  font-size: 20px;
+
+
+
+}
+.icono1{
+  font-size: 25px;
+  color: #ffc107;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.cabecera{
+  text-align: center;
+
+}
+tbody{
+
+  
+}
+/*  thead{
+    background-color: red;
+  }*/
+/*Estilos para la pagina principal*/
+* {
+			/*outline: 1px red solid;*/
+		}
+		
+		body {
+			margin:0;
+			padding:0;
+			font-family: sans-serif;
+			background-image: url('../logos/bgdre-puno.jpg');
+		}
+		.contenedor{
+			background: #ffffff;
+		}
+		.contenedor1{
+			display: flex;
+ 			flex-direction:  row;
+			background: #5B5B5F;
+			
+			align-items: center;t
+
+
+		}
+		.contenedor2{
+			margin-top: 10px;
+
+
+		}
+		.logoPrincipal{
+			margin-right: 80px;
+			margin-left: 80px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+
+		}
+		.subtitulo{
+			color: #fff;
+			font-weight: 900;
+			text-align: center;
+		}
+		.titulo{
+			color: #fff;
+			font-weight: 900;
+			text-align: center;
+		}
+		
+		
+		
+/*Estilo para el footer*/
+footer {
+  padding: 1em 0; }
+
+.consulta{
+  background: #ffffff;
+  
+}
+.footer-07 {
+  background: #ffffff; }
+  .footer-07 a {
+    color: rgba(0, 0, 0, 0.6); }
+  .footer-07 p {
+    color: rgba(0, 0, 0, 0.6); }
+  .footer-heading {
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px;
+     }
+    .footer-07 .footer-heading .logo {
+      color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+       }
+  .footer-07 .menu {
+    margin-bottom: 30px; }
+    .footer-07 .menu a {
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px; }
+  .footer-07 .ftco-footer-social li a {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.6); }
+.ftco-footer-social li {
+  list-style: none;
+  margin: 0 10px 0 0;
+  display: inline-block; }
+  .ftco-footer-social li a {
+    height: 40px;
+    width: 40px;
+    display: block;
+    background: blue;
+    border-radius: 50%;
+    position: relative; }
+    .ftco-footer-social li a span {
+      position: absolute;
+      font-size: 20px;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
+    .ftco-footer-social li a:hover {
+      color: yellow; }
+
+
+  .contenido-index{
+  height: 400px;

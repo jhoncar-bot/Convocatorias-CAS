@@ -507,79 +507,7 @@ if($idResultadoEditar!=''){
 </div>
 
 
-<style type="text/css">
-/*  *{
-   outline: 1px red solid;
-}*/
-  .pdfRow{
-    display: flex;
-  flex-direction:  row;
-  
-  align-items: center;
-  }
-  .pdf{
-    display: flex;
-  flex-direction:  column;
-  
-  align-items: center;
 
-  }
-  .pdf .contenedorPunto{
-      display: flex;
-  flex-direction:  row;
-  justify-content: space-between;
-  align-items: center;
-    height: 10px;
-    width: 20px;
-   
- 
-
-  }
-   .pdf .contenedorPunto .punto1{
-  
-  font-size: 8px;
-  color: #ffc107;
-
-  }
-  .pdf .contenedorPunto .punto2{
-  font-size: 8px;
-  color: black;
-
-  }
-
- .icono{
-  font-size: 25px;
-  color: red;
-}
-.icono2{
-  font-size: 20px;
-
-
-
-}
-.icono1{
-  font-size: 25px;
-  color: #ffc107;
-}
-.box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.cabecera{
-  text-align: center;
-
-}
-tbody{
-
-  
-}
-/*  thead{
-    background-color: red;
-  }*/
-
-</style>
 <?php 
 if($id!=''){
   echo '<script type="text/javascript">
