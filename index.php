@@ -25,13 +25,19 @@ $resultado=$conn->query($sql);
 <body >
 
 	<div class="card card-lg contenedor1">
+    <div class="container contenedor1"> 
+    <div> 
 		<a href="https://www.drepuno.gob.pe/" target="_blank"><img class="img-responsivo logoPrincipal" src="./logos/logogrdrep.png" /></a>
-		<div class="container titulos">
+    </div>
+		<div class="">
 			<h2 class="subtitulo">Dirección Regional de Educación Puno</h2>
 			<h1 class="titulo">Convocatorias CAS </h1>
 		</div>
+    <div> 
 		<a href="https://www.drepuno.gob.pe/" target="_blank"><img class="img-responsivo logoPrincipal" src="./logos/logochacana.png" /></a>
+    </div>
 	</div>
+  </div>
 	<div class="card container contenedor2"  >
 
 
@@ -78,7 +84,7 @@ $resultado=$conn->query($sql);
                     
                   </div>
                   <div class="modal-body">
-                    <table class="table table-bordered  table-sm" id="convocatoriasTable">
+                    <table class=" table table-striped table-bordered  " id="convocatoriasTable">
                       <thead>
                         <tr>
                           <th >ETAPA</th>
