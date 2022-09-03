@@ -10,13 +10,14 @@
 ?>
 <html lang="es">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		<script src="js/jquery-3.1.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>	
-		<link href="css/jquery.dataTables.min.css" rel="stylesheet">	
-		<script src="js/jquery.dataTables.min.js"></script>
+		<link rel="stylesheet" href="./estilos/bootstrap.min.css" />
+    <link rel="stylesheet" href="./estilos/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./estilos/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.5.1.js"> </script>
+    <script src="./js/jquery.dataTables.min.js"> </script>
+    <script src="./js/javascript.js"> </script>
 		
 		
 		<script>
