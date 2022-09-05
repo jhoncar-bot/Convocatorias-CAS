@@ -12,6 +12,7 @@ $numConvocatoria='';
 $cargo='';
 $estado='';
 $bases='';
+$cancelado='';
 if($id!=''){
   $sql="SELECT * FROM convocatoria WHERE id=$id";
   $result=$conn->query($sql);
@@ -21,6 +22,8 @@ if($id!=''){
   $cargo=$fila[2];
   $estado=$fila[3];
   $bases=$fila[4];
+
+  $cancelado=($fila[5]==1)?'checked':'';
 }
 
 // funciones para evaluacion curricular
@@ -131,7 +134,18 @@ if($idResultadoEditar!=''){
              $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
              $queryResultado=$conn->query($sql3);
              $numFilas=$queryResultado->num_rows;
-             echo($numFilas>0?"FINALIZADO":"EN PROCESO")
+             $sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
+             $queryEvaluacion=$conn->query($sql4);
+             $numFilasEvaluacion=$queryEvaluacion->num_rows;
+             if($fila[5]==1){
+              echo "CANCELADO";
+             }elseif($numFilas>0 && $fila[4]){
+              echo "FINALIZADO";
+             }elseif($numFilasEvaluacion>0){
+              echo "EN PROCESO";
+             }else{
+              echo "EN CONVOCATORIA";
+             }
              ?>   
            </td>
            <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
@@ -296,6 +310,13 @@ if($idResultadoEditar!=''){
             <textarea class="form-control" name="base"  placeholder="Link"><?php echo $bases;?></textarea>
 
           </div>
+          <div class="form-check">
+            <label class="form-check-label" for="flexCheckChecked">
+            CANCELAR
+          </label>
+          <input class="form-check-input" type="checkbox" value="1" name="cancelado" <?php echo $cancelado;?>  >
+          
+        </div>
         </form>
       </div>
       <div class="modal-footer">

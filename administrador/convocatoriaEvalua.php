@@ -18,7 +18,8 @@ if($op=="eliminar"){
     $cargo=$_GET['cargo'];
     $estado=$_GET['estado'];
     $base=$_GET['base'];
-    $sql="UPDATE convocatoria SET numConvocatoria='$numConvocatoria',cargo='$cargo',estado='$estado',bases='$base' WHERE id=$id";
+    $cancelado=(isset($_GET['cancelado']))?'1':'0';
+    $sql="UPDATE convocatoria SET numConvocatoria='$numConvocatoria',cargo='$cargo',estado='$estado',bases='$base',cancelado=$cancelado WHERE id=$id";
     if (!$resultado = $conn->query($sql)) die("no se editar el dato porque: ".$conn->error);
 }else{
      $numConvocatoria=$_GET['numConvocatoria'];

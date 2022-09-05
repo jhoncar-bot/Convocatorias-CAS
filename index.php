@@ -66,8 +66,19 @@ $resultado=$conn->query($sql);
                $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
                $queryResultado=$conn->query($sql3);
                $numFilas=$queryResultado->num_rows;
-               echo($numFilas>0?"FINALIZADO":"EN PROCESO")
-               ?>   
+               $sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
+               $queryEvaluacion=$conn->query($sql4);
+               $numFilasEvaluacion=$queryEvaluacion->num_rows;
+               if($fila[5]==1){
+                echo "CANCELADO";
+               }elseif($numFilas>0 && $fila[4]){
+                echo "FINALIZADO";
+               }elseif($numFilasEvaluacion>0){
+                echo "EN PROCESO";
+               }else{
+                echo "EN CONVOCATORIA";
+               }
+             ?>  
              </td>
              <td class="text-center"><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
 
