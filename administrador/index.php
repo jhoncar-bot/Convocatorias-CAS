@@ -90,10 +90,10 @@ if($idResultadoEditar!=''){
 
     <div>
       <a href="./" class="btn btn-danger">Actualizar Datos</a> 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">
-      Agregar Datos
-    </button> 
-    <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">
+        Agregar Datos
+      </button> 
+      <!-- Button trigger modal -->
 
     </div>
     
@@ -127,106 +127,106 @@ if($idResultadoEditar!=''){
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
             <td>
-               <?php
-                $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
-                $queryResultado=$conn->query($sql3);
-                $numFilas=$queryResultado->num_rows;
-                echo($numFilas>0?"FINALIZADO":"EN PROCESO")
-                ?>   
-            </td>
-            <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
-            <td><div class="box"><div class="pdfRow">
-              <?php
-                $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-                $query=$conn->query($sql);
-                while($filaEvaluacion=$query->fetch_row()){
-                    echo($filaEvaluacion[1]!='')?'
-                          <div class="pdf">
-                            <div>
-                              <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-                            </div>
-                            <div class="contenedorPunto">
-                              <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-                              <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-                            </div>
-                          </div>':'';
-                  }
-                ?>                  
-            </div>
+             <?php
+             $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
+             $queryResultado=$conn->query($sql3);
+             $numFilas=$queryResultado->num_rows;
+             echo($numFilas>0?"FINALIZADO":"EN PROCESO")
+             ?>   
+           </td>
+           <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
+           <td><div class="box"><div class="pdfRow">
+            <?php
+            $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
+            $query=$conn->query($sql);
+            while($filaEvaluacion=$query->fetch_row()){
+              echo($filaEvaluacion[1]!='')?'
+              <div class="pdf">
+              <div>
+              <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+              </div>
+              <div class="contenedorPunto">
+              <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+              <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+              </div>
+              </div>':'';
+            }
+            ?>                  
+          </div>
+          <div>
+            <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
+          </div>
+        </div></td>
+        <td><div class="box"><div class="pdfRow">
+          <?php
+          $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
+          $query=$conn->query($sql1);
+          while($filaConocimientos=$query->fetch_row()){
+            echo($filaConocimientos[1]!='')?'
+            <div class="pdf">
             <div>
-              <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
+            <a href="'.$filaConocimientos[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
             </div>
-          </div></td>
-          <td><div class="box"><div class="pdfRow">
-              <?php
-                $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
-                $query=$conn->query($sql1);
-                while($filaConocimientos=$query->fetch_row()){
-                    echo($filaConocimientos[1]!='')?'
-                          <div class="pdf">
-                            <div>
-                              <a href="'.$filaConocimientos[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-                            </div>
-                            <div class="contenedorPunto">
-                              <a href="index.php?idConocimientosEditar='.$filaConocimientos[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-                              <a href="conocimientos_evalua.php?op=eliminar&id='.$filaConocimientos[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-                            </div>
-                          </div>':'';
-                  }
-                ?>                  
+            <div class="contenedorPunto">
+            <a href="index.php?idConocimientosEditar='.$filaConocimientos[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+            <a href="conocimientos_evalua.php?op=eliminar&id='.$filaConocimientos[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
             </div>
-            <div>
-              <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
-            </div>
-          </div></td>
-          <td><div class="box"><div class="pdfRow">
-              <?php
-                $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
-                $query=$conn->query($sql2);
-                while($filaEntevista=$query->fetch_row()){
-                    echo($filaEntevista[1]!='')?'
-                          <div class="pdf">
-                            <div>
-                              <a href="'.$filaEntevista[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-                            </div>
-                            <div class="contenedorPunto">
-                              <a href="index.php?idEntrevistaEditar='.$filaEntevista[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-                              <a href="entrevista_evalua.php?op=eliminar&id='.$filaEntevista[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-                            </div>
-                          </div>':'';
-                  }
-                ?>                  
-            </div>
-            <div>
-              <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
-            </div>
-          </div></td>
-          <td><div class="box"><div class="pdfRow">
-              <?php
-                while($filaResultado=$queryResultado->fetch_row()){
-                    echo($filaResultado[1]!='')?'
-                          <div class="pdf">
-                            <div>
-                              <a href="'.$filaResultado[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-                            </div>
-                            <div class="contenedorPunto">
-                              <a href="index.php?idResultadoEditar='.$filaResultado[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-                              <a href="resultado_evalua.php?op=eliminar&id='.$filaResultado[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-                            </div>
-                          </div>':'';
-                  }
-                ?>                  
-            </div>
-            <div>
-              <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
-            </div>
-          </div></td>
-          <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
-          <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6"><i class="bi bi-trash3  icono " ></a></i></td>
-        </tr>
-      <?php } ?>
-    </tbody>
-  </table>
+            </div>':'';
+          }
+          ?>                  
+        </div>
+        <div>
+          <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
+        </div>
+      </div></td>
+      <td><div class="box"><div class="pdfRow">
+        <?php
+        $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
+        $query=$conn->query($sql2);
+        while($filaEntevista=$query->fetch_row()){
+          echo($filaEntevista[1]!='')?'
+          <div class="pdf">
+          <div>
+          <a href="'.$filaEntevista[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+          </div>
+          <div class="contenedorPunto">
+          <a href="index.php?idEntrevistaEditar='.$filaEntevista[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+          <a href="entrevista_evalua.php?op=eliminar&id='.$filaEntevista[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+          </div>
+          </div>':'';
+        }
+        ?>                  
+      </div>
+      <div>
+        <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
+      </div>
+    </div></td>
+    <td><div class="box"><div class="pdfRow">
+      <?php
+      while($filaResultado=$queryResultado->fetch_row()){
+        echo($filaResultado[1]!='')?'
+        <div class="pdf">
+        <div>
+        <a href="'.$filaResultado[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+        </div>
+        <div class="contenedorPunto">
+        <a href="index.php?idResultadoEditar='.$filaResultado[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+        <a href="resultado_evalua.php?op=eliminar&id='.$filaResultado[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+        </div>
+        </div>':'';
+      }
+      ?>                  
+    </div>
+    <div>
+      <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
+    </div>
+  </div></td>
+  <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
+  <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6"><i class="bi bi-trash3  icono " ></a></i></td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
 
 </div>
 
@@ -320,7 +320,11 @@ if($idResultadoEditar!=''){
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Evaluacion Curricular</label>
             <textarea class="form-control" name="evaluacion"  placeholder="Ingrese el link"></textarea>
-
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault"> Preliminar
+            </label>
+            <input class="form-check-input" type="checkbox" value="Preliminar" name="estado">
           </div>
         </form>
       </div>
