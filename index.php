@@ -129,6 +129,7 @@ $resultado=$conn->query($sql);
                     <tr>
                       <td class="tdModal">⠀⠀Conocimientos y Aptitudes</td>
                       <td class="text-center">
+                        <div class="pdfs">                         
                         <?php
                         $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
                         $query=$conn->query($sql1);
@@ -136,17 +137,21 @@ $resultado=$conn->query($sql);
                           echo($filaConocimientos[1]!='')?'
 
 
-                          <a href="'.$filaConocimientos[1].'" target="_blank" class="m-5"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                          <a href="'.$filaConocimientos[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
 
 
                           ':'';
                         }
-                        ?> 
+                        ?>
+                        </div> 
+                        <p class="text-start preliminar"></p>
                       </td>
                     </tr>
                     <tr>
                       <td class="tdModal">⠀⠀Entrevista Personal</td>
                       <td class="text-center">
+                        <div class="pdfs">                         
+
                        <?php
                        $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
                        $query=$conn->query($sql2);
@@ -154,17 +159,21 @@ $resultado=$conn->query($sql);
                         echo($filaEntevista[1]!='')?'
 
 
-                        <a href="'.$filaEntevista[1].'" target="_blank" class=" py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                        <a href="'.$filaEntevista[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
 
 
                         ':'';
                       }
                       ?> 
+                      </div> 
+                        <p class="text-start preliminar"></p>
                     </td>
                   </tr>
                   <tr>
                     <td class="tdModal">⠀⠀Resultado Final</td>
                     <td class="text-center">
+                        <div class="pdfs">                         
+
                       <?php
                       $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
                       $queryResultado=$conn->query($sql3);
@@ -172,12 +181,14 @@ $resultado=$conn->query($sql);
                         echo($filaResultado[1]!='')?'
 
 
-                        <a href="'.$filaResultado[1].'" target="_blank" class=" py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                        <a href="'.$filaResultado[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
 
 
                         ':'';
                       }
                       ?> 
+                      </div> 
+                        <p class="text-start preliminar"></p>
                     </td>
                   </tr>
                 </tbody>

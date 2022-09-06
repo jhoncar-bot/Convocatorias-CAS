@@ -105,10 +105,11 @@ outline: 1px red solid;
 }
 .cabecera{
   text-align: center;
+  color: white;
 
 }
-.table-responsive{
-    background-color: white;
+.tablaAdministrador{
+    background-color: black;
 }
 
 /*  thead{

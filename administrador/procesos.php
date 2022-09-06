@@ -102,7 +102,7 @@ if($idResultadoEditar!=''){
               echo($fila[1]!='')?'
               <div class="pdf">
               <div>
-              <a href="'.$fila[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+              <a href="'.$fila[1].'" target="_blank" class="p-2 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
               </div>
               <div class="contenedorPunto">
               <a href="index.php?idEvaluacionEditar='.$fila[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 

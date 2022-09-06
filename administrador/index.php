@@ -26,9 +26,9 @@ include("procesos.php");
     <a href="" id="press"  data-bs-toggle="modal" data-bs-target="#Modal2"></a> 
 
     <div>
-      <a href="./" class="btn btn-danger">Actualizar Datos</a> 
+      <a href="./" class="btn btn-danger">Recargar <br> Pagina</a> 
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">
-        Agregar Datos
+        Iniciar <br>   Convocatoria
       </button> 
       <!-- Button trigger modal -->
 
@@ -41,10 +41,9 @@ include("procesos.php");
   <h2>Panel de Control:</h2>
   <br>
   <div class="table-responsive">
-    <table class="table table-bordered  table-sm ">
+    <table class="display cell-border  compact small tablaAdministrador"  id="convocatoriasTable">
       <thead class="align-middle">
-        <tr class="table-dark cabecera ">
-          <th >#</th>
+        <tr class="cabecera ">
           <th >N° de Convocatoria</th>
           <th >Cargo</th>
           <th >Estado</th>
@@ -57,14 +56,13 @@ include("procesos.php");
           <th >Elimnar</th>
         </tr>
       </thead>
-      <tbody class="align-middle">
+      <tbody class="align-middle ">
         <?php while($fila=$resultado->fetch_row()) {?>
           <tr >
-            <td><?php echo $fila[0]?></td>
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
             <td><?php estado($fila[0],$fila[4],$fila[5])?>  </td>
-            <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
+            <td class="text-center"><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class=" py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
             <td>
               <div class="box">
                 <div class="pdfRow">
@@ -402,6 +400,10 @@ include("procesos.php");
     </div>
   </div>
 </div>
+<script src="../js/jquery-3.5.1.js"> </script>
+<script src="../js/jquery.dataTables.min.js"> </script>
+<script src="../js/javascript.js"> </script>
+
 
 
 

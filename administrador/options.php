@@ -5,19 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>SISConvocatorias</title>
-
-    
-
-
-
     <link rel="stylesheet" type="text/css" href="../estilos/bootstrap.min.css">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
-    <!-- Custom styles for this template -->
     <link href="../estilos/dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/estilos.css">
+  <link rel="stylesheet" href="../estilos/jquery.dataTables.min.css">
+
 
   </head>
   <body>
@@ -58,7 +51,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../" target="_blank">
                   <i class="bi bi-box-arrow-up-right"></i>
                   Ver Sistema
                 </a>

@@ -15,8 +15,7 @@ if($op=="eliminar"){
     if (!$resultado = $conn->query($sql)) die("no se editar el dato porque: ".$conn->error);
 }else{
 	$evaluacion=$_GET['evaluacion'];
-    $estado=isset($_GET['estado'])?"Preliminar":"Final";
-	$sql="INSERT INTO evaluacion_curricular(nom_evaluacion,id_convocatoria,estado) VALUES ('$evaluacion',$idEvaluacion,'$estado')";
+	$sql="INSERT INTO evaluacion_curricular(nom_evaluacion,id_convocatoria) VALUES ('$evaluacion',$idEvaluacion)";
 	if (!$resultado = $conn->query($sql)) die("no se agregar el dato porque: ".$conn->error);
     
 }
