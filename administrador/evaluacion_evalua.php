@@ -18,6 +18,7 @@ if($op=="eliminar"){
     $estado=isset($_GET['estado'])?"Preliminar":"Final";
 	$sql="INSERT INTO evaluacion_curricular(nom_evaluacion,id_convocatoria,estado) VALUES ('$evaluacion',$idEvaluacion,'$estado')";
 	if (!$resultado = $conn->query($sql)) die("no se agregar el dato porque: ".$conn->error);
-    header("location: index.php");
+    
 }
+header("location: index.php");
 ?>

@@ -1,75 +1,9 @@
-<?php 
+<?php
 include("options.php");
-include("conexion.php");
 
-$sql="SELECT * FROM convocatoria";
-$resultado=$conn->query($sql);
-
-$id=(isset($_GET['id']))?$_GET['id']:'';
+include("procesos.php");
 
 
-$numConvocatoria='';
-$cargo='';
-$estado='';
-$bases='';
-$cancelado='';
-if($id!=''){
-  $sql="SELECT * FROM convocatoria WHERE id=$id";
-  $result=$conn->query($sql);
-  $fila=$result->fetch_row();
-  $id=$fila[0];
-  $numConvocatoria=$fila[1];
-  $cargo=$fila[2];
-  $estado=$fila[3];
-  $bases=$fila[4];
-
-  $cancelado=($fila[5]==1)?'checked':'';
-}
-
-// funciones para evaluacion curricular
-$idEvaluacion=(isset($_GET['idEvaluacion']))?$_GET['idEvaluacion']:'';
-$idEvaluacionEditar=(isset($_GET['idEvaluacionEditar']))?$_GET['idEvaluacionEditar']:'';
-$nom_evaluacion='';
-if($idEvaluacionEditar!=''){
-  $sql="SELECT * FROM evaluacion_curricular WHERE id=$idEvaluacionEditar";
-  $result=$conn->query($sql);
-  $fila=$result->fetch_row();
-  $nom_evaluacion=$fila[1];
-}
-// funciones para conocimientos y aptitudes
-$idConocimientos=(isset($_GET['idConocimientos']))?$_GET['idConocimientos']:'';
-$idConocimientosEditar=(isset($_GET['idConocimientosEditar']))?$_GET['idConocimientosEditar']:'';
-
-$nom_conocimientos='';
-if($idConocimientosEditar!=''){
-  $sql="SELECT * FROM conocimientos_aptitudes WHERE id=$idConocimientosEditar";
-  $result=$conn->query($sql);
-  $fila=$result->fetch_row();
-  $nom_conocimientos=$fila[1];
-}
-// funciones para conocimientos y aptitudes
-$idEntrevista=(isset($_GET['idEntrevista']))?$_GET['idEntrevista']:'';
-$idEntrevistaEditar=(isset($_GET['idEntrevistaEditar']))?$_GET['idEntrevistaEditar']:'';
-
-$nom_entrevista='';
-if($idEntrevistaEditar!=''){
-  $sql="SELECT * FROM entrevista_personal WHERE id=$idEntrevistaEditar";
-  $result=$conn->query($sql);
-  $fila=$result->fetch_row();
-  $nom_entrevista=$fila[1];
-}
-
-// funciones para resultado final
-$idResultado=(isset($_GET['idResultado']))?$_GET['idResultado']:'';
-$idResultadoEditar=(isset($_GET['idResultadoEditar']))?$_GET['idResultadoEditar']:'';
-
-$nom_resultado='';
-if($idResultadoEditar!=''){
-  $sql="SELECT * FROM resultado_final WHERE id=$idResultadoEditar";
-  $result=$conn->query($sql);
-  $fila=$result->fetch_row();
-  $nom_resultado=$fila[1];
-}
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
@@ -129,118 +63,53 @@ if($idResultadoEditar!=''){
             <td><?php echo $fila[0]?></td>
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
+            <td><?php estado($fila[0],$fila[4],$fila[5])?>  </td>
+            <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
             <td>
-             <?php
-             $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
-             $queryResultado=$conn->query($sql3);
-             $numFilas=$queryResultado->num_rows;
-             $sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-             $queryEvaluacion=$conn->query($sql4);
-             $numFilasEvaluacion=$queryEvaluacion->num_rows;
-             if($fila[5]==1){
-              echo "CANCELADO";
-             }elseif($numFilas>0 && $fila[4]){
-              echo "FINALIZADO";
-             }elseif($numFilasEvaluacion>0){
-              echo "EN PROCESO";
-             }else{
-              echo "EN CONVOCATORIA";
-             }
-             ?>   
-           </td>
-           <td><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
-           <td><div class="box"><div class="pdfRow">
-            <?php
-            $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-            $query=$conn->query($sql);
-            while($filaEvaluacion=$query->fetch_row()){
-              echo($filaEvaluacion[1]!='')?'
-              <div class="pdf">
+              <div class="box">
+                <div class="pdfRow">
+                  <?php mostrarEtapas($fila[0],"evaluacion_curricular","id_convocatoria"); ?>                  
+                </div>
+                <div>
+                  <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="box">
+                <div class="pdfRow">
+                  <?php mostrarEtapas($fila[0],"conocimientos_aptitudes","id_conocimientos"); ?>
+                </div>
+                <div>
+                  <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
+                </div>
+              </div>
+            </td>
+            <td><div class="box">
+              <div class="pdfRow">
+                <?php mostrarEtapas($fila[0],"entrevista_personal","id_entrevista"); ?>
+              </div>
               <div>
-              <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
               </div>
-              <div class="contenedorPunto">
-              <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-              <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
+            </div>
+          </td>
+          <td>
+            <div class="box">
+              <div class="pdfRow">
+                <?php mostrarEtapas($fila[0],"resultado_final","id_resultado"); ?>
               </div>
-              </div>':'';
-            }
-            ?>                  
-          </div>
-          <div>
-            <a href="index.php?idEvaluacion=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
-          </div>
-        </div></td>
-        <td><div class="box"><div class="pdfRow">
-          <?php
-          $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
-          $query=$conn->query($sql1);
-          while($filaConocimientos=$query->fetch_row()){
-            echo($filaConocimientos[1]!='')?'
-            <div class="pdf">
-            <div>
-            <a href="'.$filaConocimientos[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+              <div>
+                <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
+              </div>
             </div>
-            <div class="contenedorPunto">
-            <a href="index.php?idConocimientosEditar='.$filaConocimientos[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-            <a href="conocimientos_evalua.php?op=eliminar&id='.$filaConocimientos[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-            </div>
-            </div>':'';
-          }
-          ?>                  
-        </div>
-        <div>
-          <a href="index.php?idConocimientos=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2"></i></a>
-        </div>
-      </div></td>
-      <td><div class="box"><div class="pdfRow">
-        <?php
-        $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
-        $query=$conn->query($sql2);
-        while($filaEntevista=$query->fetch_row()){
-          echo($filaEntevista[1]!='')?'
-          <div class="pdf">
-          <div>
-          <a href="'.$filaEntevista[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-          </div>
-          <div class="contenedorPunto">
-          <a href="index.php?idEntrevistaEditar='.$filaEntevista[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-          <a href="entrevista_evalua.php?op=eliminar&id='.$filaEntevista[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-          </div>
-          </div>':'';
-        }
-        ?>                  
-      </div>
-      <div>
-        <a href="index.php?idEntrevista=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
-      </div>
-    </div></td>
-    <td><div class="box"><div class="pdfRow">
-      <?php
-      while($filaResultado=$queryResultado->fetch_row()){
-        echo($filaResultado[1]!='')?'
-        <div class="pdf">
-        <div>
-        <a href="'.$filaResultado[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-        </div>
-        <div class="contenedorPunto">
-        <a href="index.php?idResultadoEditar='.$filaResultado[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-        <a href="resultado_evalua.php?op=eliminar&id='.$filaResultado[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-        </div>
-        </div>':'';
-      }
-      ?>                  
-    </div>
-    <div>
-      <a href="index.php?idResultado=<?php echo $fila[0]?>" ><i class="bi bi-plus-circle icono2 "></i></a>
-    </div>
-  </div></td>
-  <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
-  <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6"><i class="bi bi-trash3  icono " ></a></i></td>
-</tr>
-<?php } ?>
-</tbody>
-</table>
+          </td>
+          <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
+          <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6"><i class="bi bi-trash3  icono " ></a></i></td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
 
 </div>
 
@@ -312,11 +181,11 @@ if($idResultadoEditar!=''){
           </div>
           <div class="form-check">
             <label class="form-check-label" for="flexCheckChecked">
-            CANCELAR
-          </label>
-          <input class="form-check-input" type="checkbox" value="1" name="cancelado" <?php echo $cancelado;?>  >
-          
-        </div>
+              CANCELAR
+            </label>
+            <input class="form-check-input" type="checkbox" value="1" name="cancelado" <?php echo $cancelado;?>  >
+
+          </div>
         </form>
       </div>
       <div class="modal-footer">
