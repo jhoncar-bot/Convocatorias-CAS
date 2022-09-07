@@ -195,7 +195,7 @@ $resultado=$conn->query($sql);
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i>Cerrar</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 
             </div>
           </div>

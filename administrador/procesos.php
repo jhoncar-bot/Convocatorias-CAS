@@ -3,10 +3,7 @@
 include("conexion.php");
 $sql="SELECT * FROM convocatoria";
 $resultado=$conn->query($sql);
-
 $id=(isset($_GET['id']))?$_GET['id']:'';
-
-
 $numConvocatoria='';
 $cargo='';
 $estado='';
@@ -21,10 +18,8 @@ if($id!=''){
   $cargo=$fila[2];
   $estado=$fila[3];
   $bases=$fila[4];
-
   $cancelado=($fila[5]==1)?'checked':'';
 }
-
 // funciones para evaluacion curricular
 $idEvaluacion=(isset($_GET['idEvaluacion']))?$_GET['idEvaluacion']:'';
 $idEvaluacionEditar=(isset($_GET['idEvaluacionEditar']))?$_GET['idEvaluacionEditar']:'';
@@ -38,7 +33,6 @@ if($idEvaluacionEditar!=''){
 // funciones para conocimientos y aptitudes
 $idConocimientos=(isset($_GET['idConocimientos']))?$_GET['idConocimientos']:'';
 $idConocimientosEditar=(isset($_GET['idConocimientosEditar']))?$_GET['idConocimientosEditar']:'';
-
 $nom_conocimientos='';
 if($idConocimientosEditar!=''){
   $sql="SELECT * FROM conocimientos_aptitudes WHERE id=$idConocimientosEditar";
@@ -49,7 +43,6 @@ if($idConocimientosEditar!=''){
 // funciones para conocimientos y aptitudes
 $idEntrevista=(isset($_GET['idEntrevista']))?$_GET['idEntrevista']:'';
 $idEntrevistaEditar=(isset($_GET['idEntrevistaEditar']))?$_GET['idEntrevistaEditar']:'';
-
 $nom_entrevista='';
 if($idEntrevistaEditar!=''){
   $sql="SELECT * FROM entrevista_personal WHERE id=$idEntrevistaEditar";
@@ -57,11 +50,9 @@ if($idEntrevistaEditar!=''){
   $fila=$result->fetch_row();
   $nom_entrevista=$fila[1];
 }
-
 // funciones para resultado final
 $idResultado=(isset($_GET['idResultado']))?$_GET['idResultado']:'';
 $idResultadoEditar=(isset($_GET['idResultadoEditar']))?$_GET['idResultadoEditar']:'';
-
 $nom_resultado='';
 if($idResultadoEditar!=''){
   $sql="SELECT * FROM resultado_final WHERE id=$idResultadoEditar";
@@ -69,11 +60,7 @@ if($idResultadoEditar!=''){
   $fila=$result->fetch_row();
   $nom_resultado=$fila[1];
 }
-
-
-
 	// funciones
-
 function estado($id,$bases,$cancelar){
   include("conexion.php");
   $sql3="SELECT * FROM resultado_final WHERE id_resultado=$id";
@@ -92,11 +79,9 @@ function estado($id,$bases,$cancelar){
    echo "EN CONVOCATORIA";
  }
 }
-
 function mostrarEtapas($id,$nombreTabla,$columnaTabla,$nombreModal,$nombreEvalua){
   include("conexion.php");
   $sql="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
-
   $query=$conn->query($sql);
   while($fila=$query->fetch_row()){
     echo($fila[1]!='')?'
@@ -111,21 +96,19 @@ function mostrarEtapas($id,$nombreTabla,$columnaTabla,$nombreModal,$nombreEvalua
     </div>':'';
   }
 }
-
 function agregarPdfLimite($id,$nombreTabla,$columnaTabla,$nombreModal){
-   include("conexion.php");
-  $sql3="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
-  $queryResultado=$conn->query($sql3);
-  $sql="SELECT cancelado FROM convocatoria WHERE id=$id";
-  $query=$conn->query($sql);
-  $cancelado=$query->fetch_row();
-  $numFilas=$queryResultado->num_rows;
-  if($cancelado[0]==0 && $numFilas!=2){
-    echo'
-    <div class="button_add">
-    <a href="index.php?'.$nombreModal.'='.$id.'" class="icono2"><i class="bi bi-plus-circle icono2"></i></a>
-    </div>';
-  }
+ include("conexion.php");
+ $sql3="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
+ $queryResultado=$conn->query($sql3);
+ $sql="SELECT cancelado FROM convocatoria WHERE id=$id";
+ $query=$conn->query($sql);
+ $cancelado=$query->fetch_row();
+ $numFilas=$queryResultado->num_rows;
+ if($cancelado[0]==0 && $numFilas!=2){
+  echo'
+  <div class="button_add">
+  <a href="index.php?'.$nombreModal.'='.$id.'" class="icono2"><i class="bi bi-plus-circle icono2"></i></a>
+  </div>';
+}
 }
 ?>
-

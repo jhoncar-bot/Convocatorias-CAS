@@ -1,44 +1,27 @@
 <?php
 include("options.php");
-
 include("procesos.php");
-
-
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">SISConvocatorias</h1>
     <!-- Modales -->
     <a href="" id="pressResultadoEditar"  data-bs-toggle="modal" data-bs-target="#ModalResultadoEditar"></a> 
     <a href="" id="pressResultado"  data-bs-toggle="modal" data-bs-target="#ModalResultado"></a> 
-
     <a href="" id="pressEntrevistaEditar"  data-bs-toggle="modal" data-bs-target="#ModalEntrevistaEditar"></a> 
     <a href="" id="pressEntrevista"  data-bs-toggle="modal" data-bs-target="#ModalEntrevista"></a> 
-
     <a href="" id="pressConocimientosEditar"  data-bs-toggle="modal" data-bs-target="#ModalConocimientosEditar"></a> 
     <a href="" id="pressConocimientos"  data-bs-toggle="modal" data-bs-target="#ModalConocimientos"></a> 
-
     <a href="" id="pressEvaluacionEditar"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricularEditar"></a> 
     <a href="" id="pressEvaluacion"  data-bs-toggle="modal" data-bs-target="#ModalEvalucionCurricular"></a> 
-
     <a href="" id="press"  data-bs-toggle="modal" data-bs-target="#Modal2"></a> 
-
     <div>
-      
       <button type="button" class="btn btn-primary buttonConvocatoria" data-bs-toggle="modal" data-bs-target="#Modal1">
         Iniciar Convocatoria
         <i class="bi bi-megaphone"></i>
-      </button> 
-      <!-- Button trigger modal -->
-
+      </button>
     </div>
-    
   </div>
-
-
-
   <h2>Panel de Control:</h2>
   <br>
   <div class="table-responsive">
@@ -78,7 +61,6 @@ include("procesos.php");
                   <?php mostrarEtapas($fila[0],"conocimientos_aptitudes","id_conocimientos","idConocimientosEditar","conocimientos_evalua.php"); ?>
                 </div>
                 <?php agregarPdfLimite($fila[0],"conocimientos_aptitudes","id_conocimientos","idConocimientos"); ?>
-
               </div>
             </td>
             <td><div class="box">
@@ -86,7 +68,6 @@ include("procesos.php");
                 <?php mostrarEtapas($fila[0],"entrevista_personal","id_entrevista","idEntrevistaEditar","entrevista_evalua.php"); ?>
               </div>
               <?php agregarPdfLimite($fila[0],"entrevista_personal","id_entrevista","idEntrevista"); ?>
-
             </div>
           </td>
           <td>
@@ -103,7 +84,6 @@ include("procesos.php");
       <?php } ?>
     </tbody>
   </table>
-
 </div>
 <!-- modal guardar -->
 <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,9 +134,7 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cargo:</label>
             <textarea class="form-control" name="cargo"  placeholder="Cargo"><?php echo $cargo;?></textarea>
-
           </div>
-
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Estado:</label>
             <input type="text" class="form-control" name="estado" value="<?php echo $estado; ?>" placeholder="Estado">
@@ -164,14 +142,12 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Bases:</label>
             <textarea class="form-control" name="base"  placeholder="Link"><?php echo $bases;?></textarea>
-
           </div>
           <div class="form-check">
             <label class="form-check-label" for="flexCheckChecked">
               CANCELAR
             </label>
             <input class="form-check-input" type="checkbox" value="1" name="cancelado" <?php echo $cancelado;?>  >
-
           </div>
         </form>
       </div>
@@ -182,7 +158,6 @@ include("procesos.php");
     </div>
   </div>
 </div>
-
 <!-- Evaluacion curricular agregar -->
 <div class="modal fade" id="ModalEvalucionCurricular" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -221,7 +196,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Evaluacion Curricular</label>
             <textarea class="form-control" name="evaluacion"  placeholder="Ingrese el link"><?php echo $nom_evaluacion;?></textarea>
-
           </div>
         </form>
       </div>
@@ -246,7 +220,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Conocimientos y aptititudes</label>
             <textarea class="form-control" name="conocimientos"  placeholder="Ingrese el link"></textarea>
-
           </div>
         </form>
       </div>
@@ -271,7 +244,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Conocimientos y aptititudes</label>
             <textarea class="form-control" name="conocimientos"  placeholder="Ingrese el link"><?php echo $nom_conocimientos;?></textarea>
-
           </div>
         </form>
       </div>
@@ -282,7 +254,6 @@ include("procesos.php");
     </div>
   </div>
 </div>
-
 <!--MODAL Entrevista personal  agregar -->
 <div class="modal fade" id="ModalEntrevista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -297,7 +268,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Entrevista Personal:</label>
             <textarea class="form-control" name="entrevista"  placeholder="Ingrese el link"></textarea>
-
           </div>
         </form>
       </div>
@@ -332,7 +302,6 @@ include("procesos.php");
     </div>
   </div>
 </div>
-
 <!--MODAL Resultado Final agregar -->
 <div class="modal fade" id="ModalResultado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -347,7 +316,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Resultado Final :</label>
             <textarea class="form-control" name="resultado"  placeholder="Ingrese el link"></textarea>
-
           </div>
         </form>
       </div>
@@ -372,7 +340,6 @@ include("procesos.php");
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Resultado Final:</label>
             <textarea class="form-control confirmarEditar" name="resultado"  placeholder="Ingrese el link"><?php echo $nom_resultado;?></textarea>
-
           </div>
         </form>
       </div>
@@ -387,12 +354,6 @@ include("procesos.php");
 <script src="../js/jquery.dataTables.min.js"> </script>
 <script src="../js/javascript.js"> </script>
 </main>
-
-
-
-
-
-
 <?php 
 if($id!=''){
   echo '<script type="text/javascript">
@@ -419,7 +380,6 @@ if($idConocimientosEditar!=''){
   document.getElementById("pressConocimientosEditar").click();
   </script>';
 }
-
 if($idEntrevista!=''){
   echo '<script type="text/javascript">
   document.getElementById("pressEntrevista").click();
