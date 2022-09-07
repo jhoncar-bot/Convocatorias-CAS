@@ -1,3 +1,6 @@
+<?php 
+  include("sesion_activa.php");
+?>
 <!doctype html>
   <html lang="en">
   <head>
@@ -45,7 +48,7 @@
             <ul class="nav flex-column">
               
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="./">
                   <i class="bi bi-house-door"></i>
                   Inicio
                 </a>
@@ -57,7 +60,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="sesion_cerrada.php">
                   <i class="bi bi-box-arrow-down-left"></i>
                   Desconectarse
                 </a>

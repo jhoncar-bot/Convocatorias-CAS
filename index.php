@@ -41,7 +41,7 @@ $resultado=$conn->query($sql);
   <div class="table-responsive tablaPrincipal">
     <table class="cell-border display compact small " id="convocatoriasTable">
       <thead class="align-middle">
-        <tr class=" cabecera ">
+        <tr >
 
           <th >N° de Convocatoria</th>
           <th >Descripción</th>

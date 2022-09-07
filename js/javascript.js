@@ -1,3 +1,29 @@
+function confirmacion(e){
+
+    if (confirm("¿Está seguro que desea eliminar este registro?")){
+    return true;
+}else{
+    e.preventDefault();
+}}
+let linkDelete=document.querySelectorAll('.confirmarEliminar');
+for(var i = 0; i<linkDelete.length;i++){
+    linkDelete[i].addEventListener('click', confirmacion);
+};
+
+function confirmacion(e){
+
+    if (confirm("¿Está seguro que desea editar este registro?")){
+    return true;
+}else{
+    e.preventDefault();
+}}
+let linkEdit=document.querySelectorAll('.confirmarEditar');
+for(var i = 0; i<linkEdit.length;i++){
+    linkEdit[i].addEventListener('click', confirmacion);
+};
+
+
+
 $(document).ready(function () {
     $('#convocatoriasTable').DataTable({
         order: [[0, "desc"]],
@@ -31,17 +57,4 @@ for (var i = 0; i <pdf.length; i++) {
     
 
 }
-/*let count=0;
-for(pdfs of pdf){
-    const hijos=pdfs.children;
-    if(hijos.length==2){
-        console.log(hijos)
-        preliminar[count].innerHTML="preliminar"
-        count++
-    }
 
-    
-}*/
-/*const hijos=pdf[0].children;
-console.log()
-*/

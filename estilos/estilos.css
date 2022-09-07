@@ -50,14 +50,16 @@ outline: 1px red solid;
 .pdfRow{
   display: flex;
   flex-direction:  row;
-  
+  justify-content: center;
   align-items: center;
+   width: 100%;
 }
 .pdf{
   display: flex;
   flex-direction:  column;
   
   align-items: center;
+  
 
 }
 .pdf .contenedorPunto{
@@ -89,6 +91,7 @@ outline: 1px red solid;
 }
 .icono2{
   font-size: 20px;
+  width: 100%;
 
 
 
@@ -100,17 +103,25 @@ outline: 1px red solid;
 .box {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+ 
   align-items: center;
+}
+.button_add{
+  display: flex;
+  align-items: center;
+  text-align: right;
+  width: 20%;
 }
 .cabecera{
   text-align: center;
   color: white;
+  background-color: black;
 
 }
-.tablaAdministrador{
-    background-color: black;
+.buttonConvocatoria{
+  font-size: 20px;
 }
+
 
 /*  thead{
     background-color: red;
@@ -179,6 +190,65 @@ body {
   margin-left: 27px;
 }
 
+/*Estilos para el Login*/
+.html{
+  background-color: whitesmoke;
+  
+}
+.loginCaja{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: whitesmoke;
+  
+  
+
+}
+.bodyLogin {
+  height: 100%;
+   
+   
+}
+
+.bodyLogin {
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+  
+  padding-top: 40px;
+  padding-bottom: 40px;
+  
+  width: 500px;
+  background-color: white;
+
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+.form-floating{
+  margin: 10px;
+}
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+} margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
 /*Estilo para el footer*/
 footer {
@@ -239,3 +309,5 @@ footer {
 
                       .contenido-index{
                         height: 400px;
+
+

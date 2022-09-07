@@ -1,7 +1,7 @@
 
 <?php
-	include("conexion.php");
-	$sql="SELECT * FROM convocatoria";
+include("conexion.php");
+$sql="SELECT * FROM convocatoria";
 $resultado=$conn->query($sql);
 
 $id=(isset($_GET['id']))?$_GET['id']:'';
@@ -74,59 +74,58 @@ if($idResultadoEditar!=''){
 
 	// funciones
 
-	function estado($id,$bases,$cancelar){
-		include("conexion.php");
-		$sql3="SELECT * FROM resultado_final WHERE id_resultado=$id";
-		$queryResultado=$conn->query($sql3);
-		$numFilas=$queryResultado->num_rows;
-		$sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$id";
-		$queryEvaluacion=$conn->query($sql4);
-		$numFilasEvaluacion=$queryEvaluacion->num_rows;
-		if($cancelar==1){
-			echo "CANCELADO";
-		}elseif($numFilas>0 && $bases){
-			echo "FINALIZADO";
-		}elseif($numFilasEvaluacion>0){
-			echo "EN PROCESO";
-		}else{
-			echo "EN CONVOCATORIA";
-		}
-	}
+function estado($id,$bases,$cancelar){
+  include("conexion.php");
+  $sql3="SELECT * FROM resultado_final WHERE id_resultado=$id";
+  $queryResultado=$conn->query($sql3);
+  $numFilas=$queryResultado->num_rows;
+  $sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$id";
+  $queryEvaluacion=$conn->query($sql4);
+  $numFilasEvaluacion=$queryEvaluacion->num_rows;
+  if($cancelar==1){
+   echo "CANCELADO";
+ }elseif($numFilas>0 && $bases){
+   echo "FINALIZADO";
+ }elseif($numFilasEvaluacion>0){
+   echo "EN PROCESO";
+ }else{
+   echo "EN CONVOCATORIA";
+ }
+}
 
-	function mostrarEtapas($id,$nombreTabla,$columnaTabla){
-		include("conexion.php");
-		$sql="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
-		
-            $query=$conn->query($sql);
-            while($fila=$query->fetch_row()){
-              echo($fila[1]!='')?'
-              <div class="pdf">
-              <div>
-              <a href="'.$fila[1].'" target="_blank" class="p-2 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-              </div>
-              <div class="contenedorPunto">
-              <a href="index.php?idEvaluacionEditar='.$fila[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-              <a href="evaluacion_evalua.php?op=eliminar&id='.$fila[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-              </div>
-              </div>':'';
-            }
-	}
-	
+function mostrarEtapas($id,$nombreTabla,$columnaTabla,$nombreModal,$nombreEvalua){
+  include("conexion.php");
+  $sql="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
 
-	/*$sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-            $query=$conn->query($sql);
-            while($filaEvaluacion=$query->fetch_row()){
-              echo($filaEvaluacion[1]!='')?'
-              <div class="pdf">
-              <div>
-              <a href="'.$filaEvaluacion[1].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-              </div>
-              <div class="contenedorPunto">
-              <a href="index.php?idEvaluacionEditar='.$filaEvaluacion[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-              <a href="evaluacion_evalua.php?op=eliminar&id='.$filaEvaluacion[0].'"><i class="bi bi-x-circle-fill punto2"></i></a>
-              </div>
-              </div>':'';
-            }*/
+  $query=$conn->query($sql);
+  while($fila=$query->fetch_row()){
+    echo($fila[1]!='')?'
+    <div class="pdf">
+    <div>
+    <a href="'.$fila[1].'" target="_blank" class="p-2 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+    </div>
+    <div class="contenedorPunto">
+    <a href="index.php?'.$nombreModal.'='.$fila[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
+    <a href="'.$nombreEvalua.'?op=eliminar&id='.$fila[0].'" class="confirmarEliminar"><i class="bi bi-x-circle-fill punto2"></i></a>
+    </div>
+    </div>':'';
+  }
+}
 
-?>   
+function agregarPdfLimite($id,$nombreTabla,$columnaTabla,$nombreModal){
+   include("conexion.php");
+  $sql3="SELECT * FROM $nombreTabla WHERE $columnaTabla=$id";
+  $queryResultado=$conn->query($sql3);
+  $sql="SELECT cancelado FROM convocatoria WHERE id=$id";
+  $query=$conn->query($sql);
+  $cancelado=$query->fetch_row();
+  $numFilas=$queryResultado->num_rows;
+  if($cancelado[0]==0 && $numFilas!=2){
+    echo'
+    <div class="button_add">
+    <a href="index.php?'.$nombreModal.'='.$id.'" class="icono2"><i class="bi bi-plus-circle icono2"></i></a>
+    </div>';
+  }
+}
+?>
 
