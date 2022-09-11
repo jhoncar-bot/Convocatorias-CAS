@@ -1,9 +1,8 @@
 <?php 
- include("conexion.php");
- $id=isset($_GET['id'])?$_GET['id']:'';
- $op=isset($_GET['op'])?$_GET['op']:'editar';
- $idResultado=isset($_GET['idResultado'])?$_GET['idResultado']:'';
-
+include("conexion.php");
+$id=isset($_GET['id'])?$_GET['id']:'';
+$op=isset($_GET['op'])?$_GET['op']:'editar';
+$idResultado=isset($_GET['idResultado'])?$_GET['idResultado']:'';
 if($op=="eliminar"){
     $sql="DELETE FROM resultado_final WHERE id=$id";
     $resultado= $conn->query($sql);
@@ -19,5 +18,4 @@ if($op=="eliminar"){
 	if (!$resultado = $conn->query($sql)) die("no se agregar el dato porque: ".$conn->error);
 }
 header("location: index.php");
-
 ?>

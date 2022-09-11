@@ -2,7 +2,6 @@
 include("./administrador/conexion.php");
 $sql="SELECT * FROM convocatoria";
 $resultado=$conn->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,19 +9,14 @@ $resultado=$conn->query($sql);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SISTitulos DREP</title>
-
   <link rel="stylesheet" href="./estilos/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./estilos/jquery.dataTables.min.css">
   <link rel="stylesheet" href="./estilos/estilos.css">
-
-  
-
 </head>
 <body >
-
 	<div class="card card-lg contenedor1">
-    <div class="container contenedor1"> 
+    <div class="container contenedor1">
       <div> 
         <a href="https://www.drepuno.gob.pe/" target="_blank"><img class="img-responsivo logoPrincipal" src="./logos/logogrdrep.png" /></a>
       </div>
@@ -36,26 +30,20 @@ $resultado=$conn->query($sql);
   </div>
 </div>
 <div class="card container contenedor2"  >
-
-
   <div class="table-responsive tablaPrincipal">
     <table class="cell-border display compact small " id="convocatoriasTable">
       <thead class="align-middle">
         <tr >
-
           <th >N° de Convocatoria</th>
           <th >Descripción</th>
           <th >Estado</th>
           <th >Bases/ <br>TDR</th>
-
           <th>Etapas</th>
-
         </tr>
       </thead>
       <tbody class="align-middle ">
         <?php while($fila=$resultado->fetch_row()) {?>
           <tr >
-
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
             <td>
@@ -78,12 +66,10 @@ $resultado=$conn->query($sql);
             ?>  
           </td>
           <td class="text-center"><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
-
           <td class="text-center">
             <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modal<?php echo $fila[0]; ?>">
              <i class="fs-4 bi bi-file-earmark-text"></i>
            </button>
-
            <div class="modal fade" id="modal<?php echo $fila[0]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -91,7 +77,6 @@ $resultado=$conn->query($sql);
                   <h6 class="modal-title modalTitulo" id="exampleModalLabel">CONCURSO: <?php echo $fila[2] ?> </h6>
                   <button type="button" class="btn-close "  data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
                   <table class=" table table-striped table-bordered  " id="convocatoriasTable">
                     <thead>
@@ -99,50 +84,38 @@ $resultado=$conn->query($sql);
                         <th >ETAPA</th>
                         <th >PUBLICACIÓN</th>
                       </tr>
-
-
                     </thead>
                     <tbody class="align-middle text-start fw-bold">
                      <tr>
                       <td class="tdModal">⠀⠀Evaluación Curricilar</td>
                       <td class="text-center ">
                         <div class="pdfs">
-                        <?php
-                        $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
-                        $query=$conn->query($sql);
-                        while($filaEvaluacion=$query->fetch_row()){
-                          echo($filaEvaluacion[1]!='')?'
-
-
-                          <a href="'.$filaEvaluacion[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-
-
-                          ':'';
-                        }
-                        ?> 
+                          <?php
+                          $sql="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
+                          $query=$conn->query($sql);
+                          while($filaEvaluacion=$query->fetch_row()){
+                            echo($filaEvaluacion[1]!='')?'
+                            <a href="'.$filaEvaluacion[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                            ':'';
+                          }
+                          ?> 
                         </div>
                         <p class="text-start preliminar"></p>
                       </td>
                     </tr>
-
-
                     <tr>
                       <td class="tdModal">⠀⠀Conocimientos y Aptitudes</td>
                       <td class="text-center">
                         <div class="pdfs">                         
-                        <?php
-                        $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
-                        $query=$conn->query($sql1);
-                        while($filaConocimientos=$query->fetch_row()){
-                          echo($filaConocimientos[1]!='')?'
-
-
-                          <a href="'.$filaConocimientos[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-
-
-                          ':'';
-                        }
-                        ?>
+                          <?php
+                          $sql1="SELECT * FROM conocimientos_aptitudes WHERE id_conocimientos=$fila[0]";
+                          $query=$conn->query($sql1);
+                          while($filaConocimientos=$query->fetch_row()){
+                            echo($filaConocimientos[1]!='')?'
+                            <a href="'.$filaConocimientos[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                            ':'';
+                          }
+                          ?>
                         </div> 
                         <p class="text-start preliminar"></p>
                       </td>
@@ -151,44 +124,34 @@ $resultado=$conn->query($sql);
                       <td class="tdModal">⠀⠀Entrevista Personal</td>
                       <td class="text-center">
                         <div class="pdfs">                         
-
-                       <?php
-                       $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
-                       $query=$conn->query($sql2);
-                       while($filaEntevista=$query->fetch_row()){
-                        echo($filaEntevista[1]!='')?'
-
-
-                        <a href="'.$filaEntevista[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-
-
-                        ':'';
-                      }
-                      ?> 
+                         <?php
+                         $sql2="SELECT * FROM entrevista_personal WHERE id_entrevista=$fila[0]";
+                         $query=$conn->query($sql2);
+                         while($filaEntevista=$query->fetch_row()){
+                          echo($filaEntevista[1]!='')?'
+                          <a href="'.$filaEntevista[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                          ':'';
+                        }
+                        ?> 
                       </div> 
-                        <p class="text-start preliminar"></p>
+                      <p class="text-start preliminar"></p>
                     </td>
                   </tr>
                   <tr>
                     <td class="tdModal">⠀⠀Resultado Final</td>
                     <td class="text-center">
-                        <div class="pdfs">                         
-
-                      <?php
-                      $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
-                      $queryResultado=$conn->query($sql3);
-                      while($filaResultado=$queryResultado->fetch_row()){
-                        echo($filaResultado[1]!='')?'
-
-
-                        <a href="'.$filaResultado[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
-
-
-                        ':'';
-                      }
-                      ?> 
+                      <div class="pdfs">                         
+                        <?php
+                        $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
+                        $queryResultado=$conn->query($sql3);
+                        while($filaResultado=$queryResultado->fetch_row()){
+                          echo($filaResultado[1]!='')?'
+                          <a href="'.$filaResultado[1].'" target="_blank" class="m-3"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
+                          ':'';
+                        }
+                        ?> 
                       </div> 
-                        <p class="text-start preliminar"></p>
+                      <p class="text-start preliminar"></p>
                     </td>
                   </tr>
                 </tbody>
@@ -196,23 +159,17 @@ $resultado=$conn->query($sql);
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-
             </div>
           </div>
         </div>
       </div>
     </td>               
-
   </tr>
-
 <?php } ?>
 </tbody>
 </table>
-
 </div>
 </div>
-
-
 </br></br>			
 <footer class="footer-07 card container">
   <div class="row justify-content-center">
