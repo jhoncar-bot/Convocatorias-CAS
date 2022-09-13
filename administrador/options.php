@@ -15,16 +15,15 @@
   </head>
   <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <div class="navbar-brand tituloGeneral"> 
-        <div class="title"> 
+      <div class="navbar-brand tituloGeneral">
+        <div class="title">
           DREP
         </div>
         <span class="linea">  </span>
-        <div class="subtitle"> 
+        <div class="subtitle">
           Dirección Regional de <br>   educación Puno
         </div>
       </div>
-      <!--  <a class="navbar-brand  px-4 fs-7 " href="#">DREP<span class="title">  </span> <span class="subtitle">Dirección Regional de <br>   Educación Puno </span> </a> -->
       <img class="logo1" src="../logos/logochacana.png" alt="">
       <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

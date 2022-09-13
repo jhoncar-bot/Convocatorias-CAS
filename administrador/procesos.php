@@ -16,9 +16,11 @@ if($id!=''){
   $id=$fila[0];
   $numConvocatoria=$fila[1];
   $cargo=$fila[2];
-  $estado=$fila[3];
-  $bases=$fila[4];
-  $cancelado=($fila[5]==1)?'checked':'';
+  $fechaFin=$fila[3];
+  $estado=$fila[4];
+  $bases=$fila[5];
+  $cancelado=($fila[6]==1)?'checked':'';
+  $fechaInicio=$fila[7];
 }
 // funciones para evaluacion curricular
 $idEvaluacion=(isset($_GET['idEvaluacion']))?$_GET['idEvaluacion']:'';
@@ -90,8 +92,8 @@ function mostrarEtapas($id,$nombreTabla,$columnaTabla,$nombreModal,$nombreEvalua
     <a href="'.$fila[1].'" target="_blank" class="p-2 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>
     </div>
     <div class="contenedorPunto">
-    <a href="index.php?'.$nombreModal.'='.$fila[0].'"><i class="bi bi-pencil-fill punto1"></i></a> 
-    <a href="'.$nombreEvalua.'?op=eliminar&id='.$fila[0].'" class="confirmarEliminar"><i class="bi bi-x-circle-fill punto2"></i></a>
+    <a href="index.php?'.$nombreModal.'='.$fila[0].'" title="Editar"><i class="bi bi-pencil-fill punto1"></i></a> 
+    <a href="'.$nombreEvalua.'?op=eliminar&id='.$fila[0].'" class="confirmarEliminar" title="Eliminar"><i class="bi bi-x-circle-fill punto2"></i></a>
     </div>
     </div>':'';
   }
@@ -107,7 +109,7 @@ function agregarPdfLimite($id,$nombreTabla,$columnaTabla,$nombreModal){
  if($cancelado[0]==0 && $numFilas!=2){
   echo'
   <div class="button_add">
-  <a href="index.php?'.$nombreModal.'='.$id.'" class="icono2"><i class="bi bi-plus-circle icono2"></i></a>
+  <a href="index.php?'.$nombreModal.'='.$id.'" class="icono2" title="Añadir"><i class="bi bi-plus-circle icono2"></i></a>
   </div>';
 }
 }

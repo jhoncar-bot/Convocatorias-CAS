@@ -31,6 +31,7 @@ include("procesos.php");
           <th >N° de Convocatoria</th>
           <th >Cargo</th>
           <th >Estado</th>
+          <th >Vigencia</th>
           <th >Bases</th>
           <th>Evaluacion Curricular</th>
           <th>Conocimientos y Aptitudes</th>
@@ -45,8 +46,9 @@ include("procesos.php");
           <tr >
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
-            <td><?php estado($fila[0],$fila[4],$fila[5])?>  </td>
-            <td class="text-center"><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class=" py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
+            <td><?php estado($fila[0],$fila[5],$fila[6])?>  </td>
+            <td class="text-center sizeDate"><?php echo $fila[7]." al <br>".$fila[3]?></td>
+            <td class="text-center"><?php echo($fila[5]!='')?'<a href="'.$fila[5].'" target="_blank" class=" py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
             <td>
               <div class="box">
                 <div class="pdfRow">
@@ -78,8 +80,8 @@ include("procesos.php");
               <?php agregarPdfLimite($fila[0],"resultado_final","id_resultado","idResultado"); ?>
             </div>
           </td>
-          <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1"></i></a></td>
-          <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6 confirmarEliminar"><i class="bi bi-trash3  icono " ></a></i></td>
+          <td><a href="index.php?id=<?php echo $fila[0]?>" class="p-3 py-6" ><i class="bi bi-pencil-square icono1" title="Editar"></i></a></td>
+          <td><a href="convocatoriaEvalua.php?op=eliminar&id=<?php echo $fila[0]?>" class="p-3 py-6 confirmarEliminar" title="Eliminar"><i class="bi bi-trash3  icono "  ></a></i></td>
         </tr>
       <?php } ?>
     </tbody>
@@ -98,6 +100,10 @@ include("procesos.php");
          <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">N° de Convocatoria:</label>
           <input type="text" class="form-control" name="numConvocatoria"  placeholder="N° de Convocatoria">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Fecha de Finalizacion:</label>
+          <input type="date" class="form-control" name="fechaFin">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Cargo:</label>
@@ -131,13 +137,23 @@ include("procesos.php");
             <label for="exampleFormControlInput1" class="form-label">N° de Convocatoria:</label>
             <input type="text" class="form-control" name="numConvocatoria" value="<?php echo $numConvocatoria; ?>" placeholder="N° de Convocatoria">
           </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label class="col-sm-12" >Fecha de Inicio: </label>
+              <div class="col-sm-12">
+                <input type="date" class="form-control"  name="fechaInicio" value="<?php echo $fechaInicio; ?>">
+              </div>
+            </div>
+            <div class="col">
+              <label class="col-sm-12" >Fecha de Finalización: </label>
+              <div class="col-sm-12">
+                <input type="date" class="form-control"  name="fechaFin" value="<?php echo $fechaFin; ?>" >
+              </div>
+            </div>
+          </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cargo:</label>
             <textarea class="form-control" name="cargo"  placeholder="Cargo"><?php echo $cargo;?></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Estado:</label>
-            <input type="text" class="form-control" name="estado" value="<?php echo $estado; ?>" placeholder="Estado">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Bases:</label>
@@ -158,6 +174,7 @@ include("procesos.php");
     </div>
   </div>
 </div>
+
 <!-- Evaluacion curricular agregar -->
 <div class="modal fade" id="ModalEvalucionCurricular" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

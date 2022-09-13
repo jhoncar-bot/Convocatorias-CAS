@@ -36,6 +36,7 @@ $resultado=$conn->query($sql);
         <tr >
           <th >N° de Convocatoria</th>
           <th >Descripción</th>
+          <th >⠀Vigencia⠀</th>
           <th >Estado</th>
           <th >Bases/ <br>TDR</th>
           <th>Etapas</th>
@@ -46,6 +47,7 @@ $resultado=$conn->query($sql);
           <tr >
             <td><?php echo $fila[1]?></td>
             <td><?php echo $fila[2]?></td>
+            <td class="text-center" ><?php echo $fila[7]." al <br>".$fila[3]?></td>
             <td>
              <?php
              $sql3="SELECT * FROM resultado_final WHERE id_resultado=$fila[0]";
@@ -54,9 +56,9 @@ $resultado=$conn->query($sql);
              $sql4="SELECT * FROM evaluacion_curricular WHERE id_convocatoria=$fila[0]";
              $queryEvaluacion=$conn->query($sql4);
              $numFilasEvaluacion=$queryEvaluacion->num_rows;
-             if($fila[5]==1){
+             if($fila[6]==1){
               echo "CANCELADO";
-            }elseif($numFilas>0 && $fila[4]){
+            }elseif($numFilas>0 && $fila[5]){
               echo "FINALIZADO";
             }elseif($numFilasEvaluacion>0){
               echo "EN PROCESO";
@@ -65,7 +67,7 @@ $resultado=$conn->query($sql);
             }
             ?>  
           </td>
-          <td class="text-center"><?php echo($fila[4]!='')?'<a href="'.$fila[4].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
+          <td class="text-center"><?php echo($fila[5]!='')?'<a href="'.$fila[5].'" target="_blank" class="p-3 py-6"><i class="bi bi-file-earmark-pdf-fill icono"></i></a>':'';?></td>
           <td class="text-center">
             <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modal<?php echo $fila[0]; ?>">
              <i class="fs-4 bi bi-file-earmark-text"></i>

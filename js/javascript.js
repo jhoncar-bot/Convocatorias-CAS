@@ -1,5 +1,4 @@
 function confirmacion(e){
-
     if (confirm("¿Está seguro que desea eliminar este registro?")){
     return true;
 }else{
@@ -9,9 +8,7 @@ let linkDelete=document.querySelectorAll('.confirmarEliminar');
 for(var i = 0; i<linkDelete.length;i++){
     linkDelete[i].addEventListener('click', confirmacion);
 };
-
-function confirmacion(e){
-
+function confirmacionEdit(e){
     if (confirm("¿Está seguro que desea editar este registro?")){
     return true;
 }else{
@@ -19,11 +16,8 @@ function confirmacion(e){
 }}
 let linkEdit=document.querySelectorAll('.confirmarEditar');
 for(var i = 0; i<linkEdit.length;i++){
-    linkEdit[i].addEventListener('click', confirmacion);
+    linkEdit[i].addEventListener('click', confirmacionEdit);
 };
-
-
-
 $(document).ready(function () {
     $('#convocatoriasTable').DataTable({
         order: [[0, "desc"]],
@@ -39,22 +33,16 @@ $(document).ready(function () {
                         "paginate": {
                             "next":       "Siguiente",
                             "previous":   "Anterior"
-                        },                  
+                        },
                     }
     });
 });
 const preliminar=document.querySelectorAll('.preliminar')
-
 const pdf=document.querySelectorAll('.pdfs');
-
 for (var i = 0; i <pdf.length; i++) {
     let hijos=pdf[i].children
-    
     if(hijos.length==2){
         preliminar[i].innerHTML="PRELIMINAR"
         console.log(hijos)
     }
-    
-
 }
-
