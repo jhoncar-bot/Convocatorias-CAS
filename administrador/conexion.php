@@ -2,7 +2,7 @@
 	$servername="localhost";
 	$username="root";
 	$password="";
-	$db="convocatorias";
+	$db="convocatoriasv2";
 	$conn=new mysqli($servername,$username,$password,$db);
 	$conn->set_charset("utf8");
 	if($conn->connect_error){

@@ -9,6 +9,7 @@ $resultado=$conn->query($sql);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SISTitulos DREP</title>
+  <link rel="icon" href="./logos/icon-cas.jpg">
   <link rel="stylesheet" href="./estilos/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./estilos/jquery.dataTables.min.css">
